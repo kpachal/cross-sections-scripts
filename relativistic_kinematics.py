@@ -57,8 +57,11 @@ def angle_lab_to_CM(theta_lab, E_lab, mass, v_frame) :
     tan_theta_CM = (p_lab * math.sin(math.radians(theta_lab)))/(gamma_frame*(p_lab * math.cos(math.radians(theta_lab)) - v_frame * E_lab))
     return math.degrees(math.atan(tan_theta_CM))
 
-def angle_CM_to_lab() :
-    return
+def angle_CM_to_lab(theta_CM, E_CM, mass, v_frame) :
+    p_CM = getP(E_CM, mass)
+    gamma_frame = getGammaFromV(v_frame)
+    tan_theta_lab = (p_CM * math.sin(math.radians(theta_CM)))/(gamma_frame*(p_CM * math.cos(math.radians(theta_CM)) + v_frame * E_CM))
+    return math.degrees(math.atan(tan_theta_lab))
 
 def momentum_lab_to_CM() :
     return
