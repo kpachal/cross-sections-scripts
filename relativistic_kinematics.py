@@ -55,7 +55,7 @@ def angle_lab_to_CM(theta_lab, E_lab, mass, v_frame) :
     p_lab = getP(E_lab,mass)
     gamma_frame = getGammaFromV(v_frame)
     tan_theta_CM = (p_lab * math.sin(math.radians(theta_lab)))/(gamma_frame*(p_lab * math.cos(math.radians(theta_lab)) - v_frame * E_lab))
-    return math.atan(math.degrees(tan_theta_CM))
+    return math.degrees(math.atan(tan_theta_CM))
 
 def angle_CM_to_lab() :
     return
