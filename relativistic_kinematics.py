@@ -63,8 +63,35 @@ def angle_CM_to_lab(theta_CM, E_CM, mass, v_frame) :
     tan_theta_lab = (p_CM * math.sin(math.radians(theta_CM)))/(gamma_frame*(p_CM * math.cos(math.radians(theta_CM)) + v_frame * E_CM))
     return math.degrees(math.atan(tan_theta_lab))
 
-def momentum_lab_to_CM() :
-    return
+def momentum_lab_to_CM(theta_lab, p_lab, mass, v_frame) :
+    E_lab = getE(p_lab, mass)
+    gamma_frame = getGammaFromV(v_frame)
+    beta_frame = v_frame
+    p_parallel_lab = p_lab * math.cos(math.radians(theta_lab))
+    p_perp_lab = p_lab * math.sin(math.radians(theta_lab))
+    p_parallel_CM = gamma_frame * (p_parallel_lab - beta_frame * E_lab)
+    p_perp_CM = p_perp_lab
+    p_CM = math.sqrt(p_parallel_CM**2 + p_perp_CM**2)
+    return p_CM
 
-def momentum_CM_to_lab() :
+def momentum_CM_to_lab(theta_CM, p_CM, mass, v_frame) :
+    E_CM = getE(p_CM, mass)
+    beta_frame = v_frame
+    gamma_frame = getGammaFromV(v_frame)
+    p_parallel_CM = p_CM * math.cos(math.radians(theta_CM))
+    p_perp_CM = p_CM * math.sin(math.radians(theta_CM))
+    p_parallel_lab = gamma_frame * (p_parallel_CM + beta_frame * E_CM)
+    p_perp_lab = p_perp_CM
+    p_lab = math.sqrt(p_parallel_lab**2 + p_perp_lab**2)
+    return p_lab
+
+def energy_lab_to_CM(theta_lab, E_lab, mass, v_frame) :
+    p_lab = getP(E_lab, mass)
+    gamma_frame = getGammaFromV(v_frame)
+    beta_frame = v_frame
+    p_parallel_lab = p_lab * math.cos(math.radians(theta_lab))
+    E_CM = gamma_frame * (E_lab - beta_frame * p_parallel_lab)
+    return E_CM
+
+def energy_CM_to_lab() :
     return
