@@ -25,6 +25,14 @@ run_template = "run.F"
 
 # Get sqrt(s) for e- beam hitting stationary target with mass chosen above.
 sqrtS = getSqrtS(E_beam, mass_scatteringcenter)
+
+# Velocity of CM frame relative to lab frame
+v_CM = get_v_CM_to_lab(E_beam, mass_scatteringcenter)
+# Gamma which is boost of CM frame relative to lab frame
+gamma_CM = getGammaFromV(v_CM)
+print("Gamma of CM frame is",gamma_CM)
+
+
 print("Tantalum target, 30 MeV beam: sqrt(s) =",getSqrtS(E_beam,mTa))
 print("Proton target, 30 MeV beam: sqrt(s) =",getSqrtS(E_beam,mp))
 print("Up quark target, 30 MeV beam: sqrt(s) =",getSqrtS(E_beam,mu))
@@ -40,3 +48,5 @@ print("Beta from that gamma:",getBetaFromGamma(getGammaFromEM(E_beam,me)))
 print("Gamma from beta using E and m:",getGammaFromBeta(getBetaFromEM(E_beam, me)))
 print("Gamma of beam electron, from V:",getGammaFromV(getV(E_beam, me)))
 print("Beta from gamma from EM",getBetaFromGamma(getGammaFromEM(E_beam,me)))
+print("angle_lab_to_CM for initial beamline particle is:",angle_lab_to_CM(0,30,me,v_CM))
+print("angle_lab_to_CM for a test outgoing particle of 10 MeV and 20 degrees in lab is:",angle_lab_to_CM(0.01,20.,me, v_CM))
