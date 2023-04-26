@@ -93,5 +93,10 @@ def energy_lab_to_CM(theta_lab, E_lab, mass, v_frame) :
     E_CM = gamma_frame * (E_lab - beta_frame * p_parallel_lab)
     return E_CM
 
-def energy_CM_to_lab() :
-    return
+def energy_CM_to_lab(theta_CM, E_CM, mass, v_frame) :
+    p_CM = getP(E_CM, mass)
+    gamma_frame = getGammaFromV(v_frame)
+    beta_frame = v_frame
+    p_parallel_CM = p_CM * math.cos(math.radians(theta_CM))
+    E_lab = gamma_frame * (E_CM + beta_frame * p_parallel_CM)
+    return E_lab
